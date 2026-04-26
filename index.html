@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politi MDT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="screen-stack" id="screenStack">
+    <section class="auth-screen" id="loginScreen">
+      <div class="auth-card login-card">
+        <div class="auth-header">
+          <div class="badge" aria-hidden="true">
+            <div class="badge-crown"></div>
+            <div class="badge-core">DK</div>
+          </div>
+          <p class="auth-kicker">Politi MDT</p>
+          <h1>Mobil Data Terminal</h1>
+          <p class="auth-subline">Danmark politioperativ platform</p>
+        </div>
+
+        <div class="auth-divider"></div>
+
+        <form class="auth-form" id="loginForm">
+          <label class="field">
+            <span>Brugernavn (email)</span>
+            <input type="email" id="loginEmail" name="email" placeholder="betjent@politi.dk" required>
+          </label>
+
+          <label class="field">
+            <span>Adgangskode</span>
+            <input type="password" id="loginPassword" name="password" placeholder="********" required>
+          </label>
+
+          <button class="primary-btn" type="submit">Log ind</button>
+        </form>
+
+        <footer class="auth-footer">
+          <p>Ingen konto endnu?</p>
+          <button class="ghost-btn" type="button" id="openRegisterButton">Registrer</button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="auth-screen hidden" id="registerScreen">
+      <div class="auth-card register-card">
+        <div class="auth-header">
+          <div class="badge" aria-hidden="true">
+            <div class="badge-crown"></div>
+            <div class="badge-core">DK</div>
+          </div>
+          <p class="auth-kicker">Opret konto</p>
+          <h1>Dansk Politi MDT</h1>
+        </div>
+
+        <div class="auth-divider"></div>
+
+        <div class="verify-banner">
+          <div class="verify-icon">+</div>
+          <div>
+            <strong>Ikke verificeret</strong>
+            <p>Skal verificeres med Discord</p>
+          </div>
+        </div>
+
+        <form class="register-form" id="registerForm">
+          <div class="section-label">Login oplysninger</div>
+          <div class="field-row">
+            <label class="field">
+              <span>Email</span>
+              <input type="email" id="registerEmail" placeholder="betjent@politi.dk" required>
+            </label>
+            <label class="field">
+              <span>Adgangskode (min. 6)</span>
+              <input type="password" id="registerPassword" placeholder="********" minlength="6" required>
+            </label>
+          </div>
+
+          <div class="section-label">Tjenesteoplysninger</div>
+          <div class="field-row">
+            <label class="field">
+              <span>Fornavn</span>
+              <input type="text" id="firstName" placeholder="Fornavn" required>
+            </label>
+            <label class="field">
+              <span>Efternavn</span>
+              <input type="text" id="lastName" placeholder="Efternavn" required>
+            </label>
+          </div>
+
+          <div class="field-row field-row-tight">
+            <label class="field">
+              <span>P-nummer</span>
+              <input type="text" id="badgeNumber" placeholder="P11-37" required>
+            </label>
+          </div>
+
+          <div class="section-label">Rang</div>
+          <div class="rank-grid" id="rankGrid">
+            <button class="chip" type="button" data-rank="Betjent">Betjent</button>
+            <button class="chip" type="button" data-rank="Overbetjent">Overbetjent</button>
+            <button class="chip" type="button" data-rank="Kriminalbetjent">Kriminalbetjent</button>
+            <button class="chip" type="button" data-rank="Sergeant">Sergeant</button>
+            <button class="chip" type="button" data-rank="Inspektoer">Inspektoer</button>
+            <button class="chip" type="button" data-rank="Kommissaer">Kommissaer</button>
+          </div>
+
+          <div class="section-label">Afdeling</div>
+          <label class="field">
+            <select id="departmentSelect">
+              <option value="" selected disabled>Vaelg afdeling</option>
+              <option>Patrulje</option>
+              <option>Efterforskning</option>
+              <option>Ledelse</option>
+            </select>
+          </label>
+
+          <p class="helper-text">For at oprette konto skal du verificere din Discord-rolle en gang.</p>
+
+          <div class="register-actions">
+            <button class="primary-btn" type="button" id="verifyButton">Verificer med Discord</button>
+            <button class="ghost-btn" type="button" id="backToLoginButton">Tilbage</button>
+            <button class="primary-btn accent-red" type="submit">Opret konto</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="app hidden" id="mdtApp">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mini-badge">DK</div>
+          <span>Politi MDT</span>
+        </div>
+
+        <nav class="topnav">
+          <button class="nav-item active" type="button" data-view="dashboard">Dashboard</button>
+          <button class="nav-item" type="button" data-view="flaadestyring">Flaadestyring</button>
+          <button class="nav-item" type="button" data-view="opslag">Opslag</button>
+          <button class="nav-item" type="button" data-view="boeder">Boeder</button>
+          <button class="nav-item" type="button" data-view="anholdelser">Anholdelser</button>
+          <button class="nav-item" type="button" data-view="rapporter">Rapporter</button>
+          <button class="nav-item" type="button" data-view="retssager">Retssager</button>
+        </nav>
+
+        <div class="topbar-right">
+          <div class="clock-box" id="clockBox">11.29.12</div>
+          <select class="status-pill status-select" id="dutyStatusSelect">
+            <option value="On Duty">On Duty</option>
+            <option value="Pause">Pause</option>
+            <option value="Out of Service">Out of Service</option>
+            <option value="Offline">Offline</option>
+          </select>
+          <button class="profile-pill" type="button" id="logoutButton">KB</button>
+        </div>
+      </header>
+
+      <main class="app-content">
+        <section class="view active" id="view-dashboard">
+          <div class="stats-grid">
+            <article class="stat-card">
+              <strong>17</strong>
+              <span>Aktive enheder</span>
+            </article>
+            <article class="stat-card">
+              <strong class="green">0</strong>
+              <span>Tilgaengelig</span>
+            </article>
+            <article class="stat-card">
+              <strong class="yellow">2</strong>
+              <span>Optaget</span>
+            </article>
+            <article class="stat-card">
+              <strong>0</strong>
+              <span>Eftersaettelse</span>
+            </article>
+          </div>
+
+          <div class="content-grid">
+            <section class="panel-box">
+              <div class="panel-title">Aktive enheder</div>
+              <div class="unit-list" id="unitList"></div>
+            </section>
+
+            <section class="panel-box side-box">
+              <div class="panel-title">Seneste noedopkald</div>
+              <div class="call-list" id="callList"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-flaadestyring">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Flaadestyring</div>
+                <div class="panel-actions">
+                  <button class="icon-btn" type="button" id="refreshFleetButton">R</button>
+                  <button class="primary-mini-btn" type="button" id="newFleetButton">+ Ny</button>
+                </div>
+              </div>
+              <div class="record-list" id="fleetList"></div>
+            </section>
+
+            <section class="panel-box detail-box" id="fleetDetailBox">
+              <div class="panel-title">Enhedsdetaljer</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-opslag">
+          <div class="split-layout narrow-left">
+            <section class="panel-box sidebar-box">
+              <div class="panel-title">Opslag</div>
+              <form class="search-stack" id="searchForm">
+                <input class="search-input" type="text" id="searchInput" placeholder="Indtast CPR-nummer...">
+                <button class="primary-btn" type="submit">Soeg</button>
+              </form>
+              <p class="helper-text">Format: DDMMAAAA-XXXX</p>
+            </section>
+
+            <section class="panel-box detail-box" id="searchResultBox">
+              <div class="panel-title">Seneste opslag</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-boeder">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Boeder</div>
+                <div class="panel-actions">
+                  <button class="icon-btn" type="button" id="refreshBoeder">R</button>
+                  <button class="primary-mini-btn" type="button" id="newBoedeButton">+ Ny</button>
+                </div>
+              </div>
+              <div class="record-list" id="fineList"></div>
+            </section>
+
+            <section class="panel-box detail-box" id="fineDetailBox">
+              <div class="panel-title">Boededetaljer</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-anholdelser">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Anholdelser</div>
+                <div class="panel-actions">
+                  <input class="mini-input" type="text" placeholder="Soeg navn...">
+                  <button class="icon-btn" type="button">R</button>
+                  <button class="danger-mini-btn" type="button" id="newArrestButton">+ Ny</button>
+                </div>
+              </div>
+              <div class="record-list arrest-list" id="arrestList"></div>
+            </section>
+
+            <section class="panel-box detail-box" id="arrestDetailBox">
+              <div class="panel-title">Anholdelsesdetaljer</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-rapporter">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Rapporter</div>
+                <div class="panel-actions">
+                  <button class="icon-btn" type="button">R</button>
+                  <button class="primary-mini-btn" type="button" id="newReportButton">+ Ny</button>
+                </div>
+              </div>
+              <div class="record-list" id="reportList"></div>
+            </section>
+
+            <section class="panel-box detail-box" id="reportDetailBox">
+              <div class="panel-title">Rapportdetaljer</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-retssager">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Retssager</div>
+                <div class="panel-actions">
+                  <button class="icon-btn" type="button">R</button>
+                </div>
+              </div>
+              <div class="record-list case-list" id="caseList"></div>
+            </section>
+
+            <section class="panel-box detail-box" id="caseDetailBox">
+              <div class="panel-title">Sagsdetaljer</div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
